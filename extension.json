@@ -1,0 +1,47 @@
+{
+	"name": "Sentry",
+	"version": "0.1",
+	"author": "xwbx",
+	"url": "https://github.com/MooncellWiki/mediawiki-extensions-Sentry",
+	"descriptionmsg": "sentry-desc",
+	"license-name": "MIT",
+	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.35.0"
+	},
+	"MessagesDirs": {
+		"Sentry": [
+			"i18n"
+		]
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\Sentry\\": "includes"
+	},
+	"Hooks": {
+		"LogException": "main"
+	},
+    "HookHandlers": {
+        "main": {
+            "class": "MediaWiki\\Extension\\Sentry\\SentryHooks",
+			"services": [ "MainConfig" ]
+        }
+    },
+	"config": {
+		"SentryDsn": {
+			"value": "",
+			"description": "SentryDsn"
+		},
+		"SentrySampleRate": {
+			"value": 1.0,
+			"description": "SentrySampleRate"
+		},
+		"SentryBeforeSend": {
+			"value": null
+		}
+	},
+	"ConfigRegistry": {
+		"Sentry": "GlobalVarConfig::newInstance"
+	},
+	"load_composer_autoloader": true,
+	"manifest_version": 2
+}
