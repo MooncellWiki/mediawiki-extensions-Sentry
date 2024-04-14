@@ -13,6 +13,7 @@ class SentryHooks implements LogExceptionHook
         $options = [
             'dsn' => $config->get('SentryDsn'),
             'sample_rate' => $config->get('SentrySampleRate'),
+            'traces_sample_rate' => $config->get('SentryTraceSampleRate'),
             'profiles_sample_rate' => $config->get('SentryProfileSampleRate'),
         ];
         if ($config->get('SentryBeforeSend')) {
