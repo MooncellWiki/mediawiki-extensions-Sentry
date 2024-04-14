@@ -1,6 +1,7 @@
 <?php
 
 namespace MediaWiki\Extension\Sentry;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Hook\LogExceptionHook;
 
@@ -10,10 +11,11 @@ class SentryHooks implements LogExceptionHook
     {
         $config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig('Sentry');
         $options = [
-            'dsn' => $config->get('SentryDsn'), 
+            'dsn' => $config->get('SentryDsn'),
             'sample_rate' => $config->get('SentrySampleRate'),
+            'profiles_sample_rate' => $config->get('SentryProfileSampleRate'),
         ];
-        if($config->get('SentryBeforeSend')){
+        if ($config->get('SentryBeforeSend')) {
             $options['before_send'] = $config->get('SentryBeforeSend');
         }
         \Sentry\init($options);
