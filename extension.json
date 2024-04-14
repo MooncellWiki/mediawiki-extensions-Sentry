@@ -20,12 +20,14 @@
 	"Hooks": {
 		"LogException": "main"
 	},
-    "HookHandlers": {
-        "main": {
-            "class": "MediaWiki\\Extension\\Sentry\\SentryHooks",
-			"services": [ "MainConfig" ]
-        }
-    },
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\Sentry\\SentryHooks",
+			"services": [
+				"MainConfig"
+			]
+		}
+	},
 	"config": {
 		"SentryDsn": {
 			"value": "",
@@ -42,6 +44,5 @@
 	"ConfigRegistry": {
 		"Sentry": "GlobalVarConfig::newInstance"
 	},
-	"load_composer_autoloader": true,
 	"manifest_version": 2
 }
