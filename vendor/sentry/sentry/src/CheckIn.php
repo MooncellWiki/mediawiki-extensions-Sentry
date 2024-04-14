@@ -19,7 +19,7 @@ final class CheckIn
     private $monitorSlug;
 
     /**
-     * @var \Sentry\CheckInStatus The status of the check-in
+     * @var CheckInStatus The status of the check-in
      */
     private $status;
 
@@ -39,15 +39,21 @@ final class CheckIn
     private $duration;
 
     /**
+     * @var MonitorConfig|null The monitor configuration
+     */
+    private $monitorConfig;
+
+    /**
      * @param int|float|null $duration The duration of the check-in in seconds
      */
     public function __construct(
         string $monitorSlug,
         CheckInStatus $status,
-        string $id = null,
+        ?string $id = null,
         ?string $release = null,
         ?string $environment = null,
-        $duration = null
+        $duration = null,
+        ?MonitorConfig $monitorConfig = null
     ) {
         $this->setMonitorSlug($monitorSlug);
         $this->setStatus($status);
@@ -56,6 +62,7 @@ final class CheckIn
         $this->setRelease($release ?? '');
         $this->setEnvironment($environment ?? Event::DEFAULT_ENVIRONMENT);
         $this->setDuration($duration);
+        $this->setMonitorConfig($monitorConfig);
     }
 
     public function getId(): string
@@ -73,9 +80,11 @@ final class CheckIn
         return $this->monitorSlug;
     }
 
-    public function setMonitorSlug(string $monitorSlug): void
+    public function setMonitorSlug(string $monitorSlug): self
     {
         $this->monitorSlug = $monitorSlug;
+
+        return $this;
     }
 
     public function getStatus(): CheckInStatus
@@ -83,9 +92,11 @@ final class CheckIn
         return $this->status;
     }
 
-    public function setStatus(CheckInStatus $status): void
+    public function setStatus(CheckInStatus $status): self
     {
         $this->status = $status;
+
+        return $this;
     }
 
     public function getRelease(): ?string
@@ -93,9 +104,11 @@ final class CheckIn
         return $this->release;
     }
 
-    public function setRelease(string $release): void
+    public function setRelease(string $release): self
     {
         $this->release = $release;
+
+        return $this;
     }
 
     public function getEnvironment(): ?string
@@ -103,9 +116,11 @@ final class CheckIn
         return $this->environment;
     }
 
-    public function setEnvironment(string $environment): void
+    public function setEnvironment(string $environment): self
     {
         $this->environment = $environment;
+
+        return $this;
     }
 
     /**
@@ -119,8 +134,22 @@ final class CheckIn
     /**
      * @param int|float|null $duration The duration of the check-in in seconds
      */
-    public function setDuration($duration): void
+    public function setDuration($duration): self
     {
         $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getMonitorConfig(): ?MonitorConfig
+    {
+        return $this->monitorConfig;
+    }
+
+    public function setMonitorConfig(?MonitorConfig $monitorConfig): self
+    {
+        $this->monitorConfig = $monitorConfig;
+
+        return $this;
     }
 }
