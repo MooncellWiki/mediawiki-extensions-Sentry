@@ -37,6 +37,14 @@
 			"value": 1.0,
 			"description": "SentrySampleRate"
 		},
+		"SentryTraceSampleRate": {
+			"value": 0.1,
+			"description": "SentrySampleRate"
+		},
+		"SentryProfileSampleRate": {
+			"value": 0.1,
+			"description": "SentrySampleRate"
+		},
 		"SentryBeforeSend": {
 			"value": null
 		}
