@@ -24,6 +24,10 @@ class SentryHooks implements LogExceptionHook
 
     public function onLogException($e, $suppressed)
     {
+        // 被 @、AtEase 或 error_reporting 屏蔽的错误，MediaWiki 只以 DEBUG 级别记到 silenced-error 频道，这里同样不上报
+        if ($suppressed) {
+            return;
+        }
         \Sentry\captureException($e);
     }
 }
